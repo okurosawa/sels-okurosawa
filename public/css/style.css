@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.top-image {
+    height: 40vh;
+    background-image: url("../images/top_image.jpg");
+    background-size: cover;
+}
+
+.top-gradation-border::before {
+    content: "";
+    display: block;
+    height: 5px;
+    width: 100%;
+    background: -moz-linear-gradient(
+        to right,
+        #9bc864,
+        #40cb8f,
+        #00c7c4,
+        #00bcef,
+        #0af
+    );
+    background: linear-gradient(
+        to right,
+        #9bc864,
+        #40cb8f,
+        #00c7c4,
+        #00bcef,
+        #0af
+    );
+}

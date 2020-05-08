@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Auth::routes();
+
+Route::middleware('auth', 'throttle:60,1')->group(function () {
+    // Logged In user can access
+    Route::get('/home', 'UserController@index')->name('home');
 });
