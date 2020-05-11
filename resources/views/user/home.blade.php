@@ -2,21 +2,13 @@
 
 @section('content')
 <div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+    <div class="row">
+        <div class="col-lg-4 col-md-5 p-4">
+            @include('components.user-profile', ['user', $user])
+        </div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+        <div class="col-lg-8 col-md-7 p-4">
+            @include('components.user-activity', ['activities', $activities])
         </div>
     </div>
 </div>
