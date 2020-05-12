@@ -14,14 +14,14 @@
                         @endif
                     </div>
                     <h3 class="d-inline-block">
-                        @if (isset($activity->activity_morph->follower_id))
+                        @if (isset($activity->activityMorph->follower_id))
                             <a href="#">{{ $activity->user->first_name }}</a>
                             <span>followed</span>
-                            <a href="#">{{ $activity->activity_morph->following_user->first_name }}</a>
-                        @elseif(isset($activity->activity_morph->category_id))
+                            <a href="#">{{ $activity->activityMorph->followingUser->first_name }}</a>
+                        @elseif(isset($activity->activityMorph->category_id))
                             <a href="#">{{ $activity->user->first_name }}</a>
                             <span>learned</span>
-                            <a href="#">{{ $activity->activity_morph->category->title }}</a>
+                            <a href="#">{{ $activity->activityMorph->category->title }}</a>
                         @endif
                     </h3>
                 </div>

@@ -11,7 +11,7 @@ class Relationship extends Model
         return $this->morphMany('App\Activity', 'activity');
     }
 
-    public function following_user()
+    public function followingUser()
     {
         return $this->belongsTo('App\User', 'following_id');
     }

@@ -8,7 +8,7 @@ class Activity extends Model
 {
     protected $fillable = ['user_id', 'activity_id', 'activity_type'];
 
-    public function activity_morph()
+    public function activityMorph()
     {
         return $this->morphTo('activity');
     }
