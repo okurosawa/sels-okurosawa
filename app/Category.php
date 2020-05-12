@@ -8,6 +8,6 @@ class Category extends Model
 {
     public function words()
     {
-        return $this->hasMany('App\Words');
+        return $this->hasMany('App\Word');
     }
 }

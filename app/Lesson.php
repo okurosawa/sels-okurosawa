@@ -20,4 +20,9 @@ class Lesson extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
 }
