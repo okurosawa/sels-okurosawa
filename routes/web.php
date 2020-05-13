@@ -28,10 +28,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Authentication for admin
     Route::get('/login', 'Admin\Auth\LoginController@showLoginForm')->name('login.form');
     Route::post('/login', 'Admin\Auth\LoginController@login')->name('login');
-    Route::post('/logout', 'Admin\Auth\LoginController@logout')->name('logout');
 
     // Logged In admin can access
     Route::middleware('auth:admin', 'throttle:60,1')->group(function () {
         Route::get('/home', 'Admin\HomeController@index')->name('home');
+        Route::post('/logout', 'Admin\Auth\LoginController@logout')->name('logout');
     });
 });
