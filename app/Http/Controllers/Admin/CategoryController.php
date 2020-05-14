@@ -25,27 +25,25 @@ class CategoryController extends Controller
         return redirect('/admin/home')->with('my_status', __('Create category is succeeded!'));
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::where('id', $id)->first();
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
         $validated = $request->validated();
-        Category::where('id', $id)
-            ->update([
-                'title' => $validated['title'],
-                'description'  => $validated['description']
-            ]);
+        $category->update([
+            'title' => $validated['title'],
+            'description'  => $validated['description']
+        ]);
 
         return redirect('/admin/home')->with('my_status', __('Edit category is succeeded!'));
     }
 
-    public function delete($id)
+    public function delete(Category $category)
     {
-        Category::destroy($id);
+        $category->delete();
 
         return redirect('/admin/home')->with('my_status', __('Delete category is succeeded!'));
     }

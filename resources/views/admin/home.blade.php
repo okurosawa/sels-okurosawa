@@ -26,7 +26,7 @@
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->description }}</td>
                         <td>
-                            <button type="button" class="btn btn-warning" onclick="location.href='{{ route('admin.category.edit', ['id' => $category->id]) }}'">
+                            <button type="button" class="btn btn-warning" onclick="location.href='{{ route('admin.category.edit', ['category' => $category->id]) }}'">
                                 Edit
                             </button>
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#category-delete-{{ $category->id }}">
@@ -36,7 +36,7 @@
                             <div class="modal fade" id="category-delete-{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
-                                        <form action="{{ route('admin.category.delete', ['id' => $category->id]) }}" method="POST">
+                                        <form action="{{ route('admin.category.delete', ['category' => $category->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body">

@@ -4,7 +4,7 @@
     <div class="container bg-white shadow my-4 py-4">
         <h1>Category Edit Page</h1>
         @isset($category)
-            <form action="{{ route('admin.category.update', ['id' => $category->id]) }}" method="POST">
+            <form action="{{ route('admin.category.update', ['category' => $category->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
