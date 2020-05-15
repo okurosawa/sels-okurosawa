@@ -3,7 +3,8 @@
     <h2>Activities</h2>
     <hr>
     @foreach ($activities as $activity)
-        <div class="mb-4 p-3 border">
+        @isset($activity->activityMorph)
+            <div class="mb-4 p-3 border">
                 <div class="row">
                     <div class="col-lg-2 col-md-3 col-sm-2 col-2">
                         @if (empty($activity->user->avatar_path))
@@ -30,8 +31,9 @@
                         @endif
                     </h3>
                 </div>
-            <p class="text-right m-0">{{ $activity->updated_at }}</p>
-        </div>
+                <p class="text-right m-0">{{ $activity->updated_at }}</p>
+            </div>
+        @endisset
     @endforeach
 
     @if (count($activities) == 0)

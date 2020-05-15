@@ -21,6 +21,13 @@ Auth::routes();
 Route::middleware('auth', 'throttle:60,1')->group(function () {
     // Logged In user can access
     Route::get('/home', 'UserController@index')->name('home');
+
+    // User
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/list', 'UserController@list')->name('list');
+        Route::get('/follow/{user}', 'UserController@follow')->name('follow');
+        Route::get('/unfollow/{user}', 'UserController@unfollow')->name('unfollow');
+    });
 });
 
 // Admin routes
