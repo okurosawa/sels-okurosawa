@@ -12,9 +12,7 @@ class ChoiceController extends Controller
 {
     public function list(Word $word)
     {
-        $choices = Choice::where('word_id', $word->id)
-            ->orderBy('id', 'asc')
-            ->paginate(10);
+        $choices = $word->choices()->orderBy('id', 'asc')->paginate(10);
 
         return view('admin.choice.list', compact(['choices', 'word']));
     }

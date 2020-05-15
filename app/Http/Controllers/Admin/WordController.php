@@ -14,9 +14,7 @@ class WordController extends Controller
 {
     public function list(Category $category)
     {
-        $words = Word::where('category_id', $category->id)
-            ->orderBy('id', 'asc')
-            ->paginate(10);
+        $words = $category->words()->orderBy('id', 'asc')->paginate(10);
 
         return view('admin.word.list', compact(['words', 'category']));
     }
