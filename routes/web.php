@@ -33,5 +33,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin', 'throttle:60,1')->group(function () {
         Route::get('/home', 'Admin\HomeController@index')->name('home');
         Route::post('/logout', 'Admin\Auth\LoginController@logout')->name('logout');
+
+        // Category
+        Route::prefix('category')->name('category.')->group(function () {
+            Route::get('/add', 'Admin\CategoryController@add')->name('add');
+            Route::post('/store', 'Admin\CategoryController@store')->name('store');
+            Route::get('/{category}/edit', 'Admin\CategoryController@edit')->name('edit');
+            Route::put('/{category}/update', 'Admin\CategoryController@update')->name('update');
+            Route::delete('/{category}/delete', 'Admin\CategoryController@delete')->name('delete');
+        });
     });
 });
