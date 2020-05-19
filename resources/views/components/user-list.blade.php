@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <h3 class="d-inline-block align-self-center">
-                    <a href="">
+                    <a href="{{ route('user.profile', ['user' => $user->id]) }}">
                         {{ $user->first_name }}
                         {{ $user->last_name }}
                     </a>

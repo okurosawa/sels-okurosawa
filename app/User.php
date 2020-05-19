@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function activities()
     {
-        return $this->morphMany('App\Activity', 'activity');
+        return $this->hasMany('App\Activity');
     }
 
     public function is_following($following_id)

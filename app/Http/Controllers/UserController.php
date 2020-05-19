@@ -50,4 +50,9 @@ class UserController extends Controller
         Auth::user()->following()->detach($user);
         return back();
     }
+
+    public function profile(User $user)
+    {
+        return view('user.profile', compact('user'));
+    }
 }

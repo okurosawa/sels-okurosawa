@@ -27,6 +27,7 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
         Route::get('/list', 'UserController@list')->name('list');
         Route::get('/follow/{user}', 'UserController@follow')->name('follow');
         Route::get('/unfollow/{user}', 'UserController@unfollow')->name('unfollow');
+        Route::get('/profile/{user}', 'UserController@profile')->name('profile');
     });
 });
 
