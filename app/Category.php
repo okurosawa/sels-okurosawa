@@ -21,12 +21,14 @@ class Category extends Model
         return $this->hasMany('App\Lesson');
     }
 
-    public function isAlreadyLearned($userId)
+    public function howManyRemainingWords($userId)
     {
-        if ($this->lessons()->where('user_id', $userId)->count() > 0) {
-            return true;
-        } else {
-            return false;
+        $lesson = $this->lessons()->where('user_id', $userId)->first();
+
+        if (isset($lesson)) {
+            return $this->words()->count() - $lesson->answers()->count();
         }
+
+        return $this->words()->count();
     }
 }
