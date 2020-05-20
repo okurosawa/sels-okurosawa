@@ -15,11 +15,17 @@
                     </div>
                     <h3 class="col-lg-10 col-md-9 col-sm-10 col-10">
                         @if (isset($activity->activityMorph->follower_id))
-                            <a href="#">{{ $activity->user->first_name }}</a>
+                            <a href="{{ route('user.profile', ['user' => $activity->activityMorph->follower_id]) }}">
+                                {{ $activity->user->first_name }}
+                            </a>
                             <span>followed</span>
-                            <a href="#">{{ $activity->activityMorph->followingUser->first_name }}</a>
+                            <a href="{{ route('user.profile', ['user' => $activity->activityMorph->followingUser->id]) }}">
+                                {{ $activity->activityMorph->followingUser->first_name }}
+                            </a>
                         @elseif(isset($activity->activityMorph->category_id))
-                            <a href="#">{{ $activity->user->first_name }}</a>
+                            <a href="{{ route('user.profile', ['user' => $activity->activityMorph->user_id]) }}">
+                                {{ $activity->user->first_name }}
+                            </a>
                             <span>
                                 learned
                                 {{ $activity->activityMorph->answers->count() }}

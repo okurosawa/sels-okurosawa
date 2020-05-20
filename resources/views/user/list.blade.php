@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container py-4">
-    @include('components.user-list', ['users' => $users])
+    @include('components.user-list', ['users' => $users, 'headline' => 'All users'])
 </div>
 @endsection

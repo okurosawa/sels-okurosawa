@@ -53,6 +53,10 @@
                                         </a>
                                     @endauth
                                 @endif
+
+                                <a class="dropdown-item" href="{{ route('user.profile', ['user' => Auth::id()]) }}">
+                                    {{ __('Profile') }}
+                                </a>
                                 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
