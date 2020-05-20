@@ -29,14 +29,14 @@
 
         <div class="d-flex justify-content-around">
             <div class="p-2">
-                <a href="#">
+                <a href="{{ route('user.follower', ['user' => $user->id]) }}">
                     <span class="font-weight-bold">{{ $user->followers->count() }}</span>
                 </a>
                 <p>followers</p>
             </div>
 
             <div class="p-2">
-                <a href="#">
+                <a href="{{ route('user.following', ['user' => $user->id]) }}">
                     <span class="font-weight-bold">{{ $user->following->count() }}</span>
                 </a>
                 <p>following</p>

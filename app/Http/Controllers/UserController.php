@@ -55,4 +55,16 @@ class UserController extends Controller
     {
         return view('user.profile', compact('user'));
     }
+
+    public function follower(User $user)
+    {
+        $followers = $user->followers()->paginate(10);
+        return view('user.follower', compact('followers', 'user'));
+    }
+
+    public function following(User $user)
+    {
+        $following = $user->following()->paginate(10);
+        return view('user.following', compact('following', 'user'));
+    }
 }

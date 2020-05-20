@@ -1,5 +1,5 @@
 <div class="bg-white border shadow p-4 mb-4">
-    <h1>All Users</h1>
+    <h1>{{ $headline }}</h1>
     <div class="row">
         @foreach ($users as $user)
         <div class="col-lg-6">
@@ -35,4 +35,8 @@
     <div class="d-flex justify-content-center">
         {{ $users->links() }}
     </div>
+
+    @if (count($users) == 0)
+        <h3>No user.</h3>
+    @endif
 </div>
