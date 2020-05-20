@@ -31,6 +31,11 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
         Route::get('/{user}/follower', 'UserController@follower')->name('follower');
         Route::get('/{user}/following', 'UserController@following')->name('following');
     });
+
+    // Category
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('list', 'CategoryController@list')->name('list');
+    });
 });
 
 // Admin routes

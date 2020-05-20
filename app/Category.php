@@ -15,4 +15,18 @@ class Category extends Model
     {
         return $this->hasMany('App\Word');
     }
+
+    public function lessons()
+    {
+        return $this->hasMany('App\Lesson');
+    }
+
+    public function isAlreadyLearned($userId)
+    {
+        if ($this->lessons()->where('user_id', $userId)->count() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
