@@ -10,20 +10,12 @@
                 <h2 class="p-4">{{ $word->content }}</h2>
             </div>
             <div class="col-lg-6">
-                <div class="form-group">
-                    <div class="btn-group-toggle" data-toggle="buttons">
-                        @foreach ($word->choices as $choice)
-                            <div class="input-group mb-2">
-                                <label class="btn btn-block btn-outline-primary">
-                                    <input type="radio" name="choiceId" class="form-control d-none" value="{{ $choice->id }}" autocomplete="off" required>
-                                    {{ $choice->content }}
-                                </label>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+                @foreach ($word->choices as $choice)
+                    <button typr="submit" name="choiceId" value="{{ $choice->id }}" class="btn btn-block btn-outline-primary">
+                        {{ $choice->content }}
+                    </button>
+                @endforeach
                 <input type="hidden" name="wordId" value="{{ $word->id }}">
-                <input type="submit" value="Submit" class="btn btn-success btn-block">
             </div>
         </div>
     </form>

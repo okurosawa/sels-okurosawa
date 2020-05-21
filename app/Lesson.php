@@ -52,9 +52,6 @@ class Lesson extends Model
                 'category_id' => $categoryId
             ]);
 
-            $activity = new Activity();
-            $activity->logActivity(Auth::id(), $createdLesson->id, 'App\Lesson');
-
             return $createdLesson;
         }
     }
