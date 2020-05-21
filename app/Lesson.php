@@ -31,6 +31,18 @@ class Lesson extends Model
         return $this->hasMany('App\Answer');
     }
 
+    public function choices()
+    {
+        return $this->hasManyThrough(
+            'App\Choice',
+            'App\Answer',
+            'lesson_id',
+            'id',
+            'id',
+            'selected_choice_id'
+        );
+    }
+
     /**
      * Create new lesson or return already exists lesson
      *
