@@ -32,3 +32,8 @@
 .icon_container {
   width: 200px;
 }
+
+.thumbnail-container {
+  display: inline-block;
+  width: 100px;
+}

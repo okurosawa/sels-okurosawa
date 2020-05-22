@@ -54,6 +54,25 @@ class User extends Authenticatable
 
     public function activities()
     {
-        return $this->morphMany('App\Activity', 'activity');
+        return $this->hasMany('App\Activity');
+    }
+
+    public function is_following($following_id)
+    {
+        if ($this->following()->where('following_id', $following_id)->count() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany('App\User', 'relationships', 'following_id', 'follower_id')->withTimestamps();
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany('App\User', 'relationships', 'follower_id', 'following_id')->withTimestamps();
     }
 }

@@ -9,8 +9,10 @@
 
     <div class="card-body">
         <h2 class="card-title">
-            {{ $user->first_name }}
-            {{ $user->last_name }}
+            <a href="{{ route('user.profile', ['user' => $user->id]) }}">
+                {{ $user->first_name }}
+                {{ $user->last_name }}
+            </a>
         </h2>
 
         <hr>
@@ -18,14 +20,14 @@
         <div class="d-flex justify-content-around">
             <div class="p-2">
                 <a class="d-inline-block btn btn-primary" href="#">
-                    <span class="font-weight-bold">{{ $user->answers_count }}</span>
+                    <span class="font-weight-bold">{{ $user->answers->count() }}</span>
                     <p>words learned</p>
                 </a>
             </div>
 
             <div class="p-2">
                 <a class="d-inline-block btn btn-primary" href="#">
-                    <span class="font-weight-bold">{{ $user->lessons_count }}</span>
+                    <span class="font-weight-bold">{{ $user->lessons->count() }}</span>
                     <p>lessons learned</p>
                 </a>
             </div>
