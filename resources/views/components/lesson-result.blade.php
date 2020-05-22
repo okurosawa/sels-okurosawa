@@ -26,13 +26,13 @@
                         @endif
                     </td>
                     <td>
-                        {{ $answer->choice->word->content }}
+                        {{ $answer->word->content }}
                     </td>
                     <td>
                         {{ $answer->choice->content }}
                     </td>
                     <td>
-                        {{ $answer->choice->word->choices->where('correct_answer_flag', true)->first()->content }}
+                        {{ $answer->word->choices->where('correct_answer_flag', true)->first()->content }}
                     </td>
                 </tr>
             @endforeach

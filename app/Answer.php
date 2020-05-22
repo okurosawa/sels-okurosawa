@@ -12,4 +12,9 @@ class Answer extends Model
     {
         return $this->belongsTo('App\Choice', 'selected_choice_id');
     }
+
+    public function word()
+    {
+        return $this->belongsTo('App\Word');
+    }
 }
