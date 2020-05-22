@@ -36,6 +36,17 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('list', 'CategoryController@list')->name('list');
     });
+
+    // Lesson
+    Route::prefix('lesson')->name('lesson.')->group(function () {
+        Route::get('/start/{category}', 'LessonController@start')->name('start');
+
+        // only user who created lesson can access
+        Route::middleware('lesson')->group(function () {
+            Route::get('/{lesson}/question', 'LessonController@question')->name('question');
+            Route::post('/{lesson}/answer', 'LessonController@answer')->name('answer');
+        });
+    });
 });
 
 // Admin routes
