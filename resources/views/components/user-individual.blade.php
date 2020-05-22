@@ -45,7 +45,7 @@
 
         <div class="text-center">
             <p>
-                <a href="#">
+                <a href="{{ route('word.learned', ['user' => $user->id]) }}">
                     Learned {{ $user->answers->count() }} words
                 </a>
             </p>

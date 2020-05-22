@@ -19,7 +19,7 @@
 
         <div class="d-flex justify-content-around">
             <div class="p-2">
-                <a class="d-inline-block btn btn-primary" href="#">
+                <a class="d-inline-block btn btn-primary" href="{{ route('word.learned', ['user' => $user->id]) }}">
                     <span class="font-weight-bold">{{ $user->answers->count() }}</span>
                     <p>words learned</p>
                 </a>
