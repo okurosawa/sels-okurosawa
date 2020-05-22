@@ -48,6 +48,11 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
             Route::post('/{lesson}/answer', 'LessonController@answer')->name('answer');
         });
     });
+
+    // Word
+    Route::prefix('word')->name('word.')->group(function () {
+        Route::get('/learned/{user}', 'WordController@learned')->name('learned');
+    });
 });
 
 // Admin routes
