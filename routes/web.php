@@ -40,6 +40,7 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
     // Lesson
     Route::prefix('lesson')->name('lesson.')->group(function () {
         Route::get('/start/{category}', 'LessonController@start')->name('start');
+        Route::get('/{lesson}/result', 'LessonController@result')->name('result');
 
         // only user who created lesson can access
         Route::middleware('lesson')->group(function () {

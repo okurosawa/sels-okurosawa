@@ -28,12 +28,12 @@
                             </a>
                             <span>
                                 learned
-                                {{ $activity->activityMorph->answers->count() }}
+                                {{ $activity->activityMorph->choices->where('correct_answer_flag', true)->count() }}
                                 of
                                 {{ $activity->activityMorph->category->words->count() }}
                                 words
                             </span>
-                            <a href="#">{{ $activity->activityMorph->category->title }}</a>
+                            <a href="{{ route('lesson.result', ['lesson' => $activity->activityMorph->id]) }}">{{ $activity->activityMorph->category->title }}</a>
                         @endif
                     </h3>
                 </div>

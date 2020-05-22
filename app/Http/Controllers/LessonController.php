@@ -27,9 +27,7 @@ class LessonController extends Controller
             $activity = new Activity();
             $activity->logActivity(Auth::id(), $lesson->id, 'App\Lesson');
 
-            // [Future task] If there is no remaining question, it will redirect to lesson result page
-            // https://app.asana.com/0/1173796632051606/1174497130657835
-            return;
+            return redirect()->route('lesson.result', ['lesson' => $lesson->id]);
         }
 
         $word = $questions->orderBy('id', 'asc')->first();
@@ -43,5 +41,10 @@ class LessonController extends Controller
         $lesson->saveAnswer($validated['wordId'], $validated['choiceId']);
 
         return redirect()->route('lesson.question', ['lesson' => $lesson->id]);
+    }
+
+    public function result(Lesson $lesson)
+    {
+        return view('lesson.result', compact('lesson'));
     }
 }

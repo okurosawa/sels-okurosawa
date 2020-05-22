@@ -9,7 +9,9 @@
                   <p class="card-text">{{ $category->description }}</p>
                   <div class="text-right">
                         @if($category->howManyRemainingWords(Auth::id()) == 0)
-                            <a href="#" class="btn btn-block btn-light">Already learned</a>
+                            <a href="{{ route('lesson.result', ['lesson' => $category->lessons->where('user_id', Auth::id())->first()->id]) }}" class="btn btn-block btn-light">
+                                Show result
+                            </a>
                         @else
                             <a href="{{ route('lesson.start', ['category' => $category->id]) }}" class="btn btn-block btn-primary">
                                 Start<br>({{ $category->howManyRemainingWords(Auth::id()) }} words left)

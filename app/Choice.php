@@ -10,4 +10,9 @@ class Choice extends Model
     use SoftDeletes;
 
     protected $fillable = ['word_id', 'content', 'correct_answer_flag'];
+
+    public function word()
+    {
+        return $this->belongsTo('App\Word');
+    }
 }
