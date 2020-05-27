@@ -30,6 +30,8 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
         Route::get('/{user}/profile', 'UserController@profile')->name('profile');
         Route::get('/{user}/follower', 'UserController@follower')->name('follower');
         Route::get('/{user}/following', 'UserController@following')->name('following');
+        Route::get('/edit', 'UserController@edit')->name('edit');
+        Route::put('/update', 'UserController@update')->name('update');
     });
 
     // Category
