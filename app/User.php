@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password', 'avatar_path',
     ];
 
     /**
@@ -74,5 +75,30 @@ class User extends Authenticatable
     public function following()
     {
         return $this->belongsToMany('App\User', 'relationships', 'follower_id', 'following_id')->withTimestamps();
+    }
+
+    /**
+     * Update User Profile
+     *
+     * @param object $data
+     * @return void
+     */
+    public function updateProfile($data)
+    {
+        $avatar = null;
+
+        if ($data->hasFile('avatar') && $data->file('avatar')->isValid()) {
+            $mimeType = $data->file('avatar')->getClientMimeType();
+            $encodedImage = base64_encode(file_get_contents($data->file('avatar')->getRealPath()));
+            $avatar = 'data:' . $mimeType . ';base64,' . $encodedImage;
+        }
+
+        $this->update([
+            'first_name'  => $data->first_name ?: $this->first_name,
+            'last_name'   => $data->last_name ?: $this->last_name,
+            'email'       => $data->email ?: $this->email,
+            'password'    => $data->new_password ? Hash::make($data->new_password) : $this->password,
+            'avatar_path' => $avatar ?: $this->avatar_path
+        ]);
     }
 }

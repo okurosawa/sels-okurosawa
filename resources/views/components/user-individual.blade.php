@@ -3,7 +3,7 @@
         @if (empty($user->avatar_path))
             <img class="card-img-top img-thumbnail" src="{{ asset('/images/user_icon_sample.png') }}">
         @else
-            <img class="card-img-top img-thumbnail" src="{{ asset($user->avatar_path) }}">
+            <img class="card-img-top img-thumbnail" src="{{ $user->avatar_path }}">
         @endif
     </div>
 
@@ -17,7 +17,7 @@
 
         <div class="text-center p-2">
             @if($user->id == Auth::id())
-                <button class="btn btn-primary px-4">Edit Profile</button>
+                <a class="btn btn-primary px-4" href="{{ route('user.edit') }}">Edit Profile</a>
             @elseif(Auth::user()->is_following(($user->id)))
                 <a class="btn btn-danger px-4" href="{{ route('user.unfollow', ['user' => $user->id]) }}">Unfollow</a>
             @else

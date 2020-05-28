@@ -10,7 +10,7 @@
                         @if (empty($activity->user->avatar_path))
                             <img class="img-thumbnail" src="{{ asset('/images/user_icon_sample.png') }}">
                         @else
-                            <img class="img-thumbnail" src="{{ asset($activity->user->avatar_path) }}">
+                            <img class="img-thumbnail" src="{{ $activity->user->avatar_path }}">
                         @endif
                     </div>
                     <h3 class="col-lg-10 col-md-9 col-sm-10 col-10">
