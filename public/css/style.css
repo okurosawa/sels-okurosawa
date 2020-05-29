@@ -37,3 +37,7 @@
   display: inline-block;
   width: 100px;
 }
+
+.table td {
+  vertical-align: middle;
+}

@@ -15,6 +15,6 @@ class Relationship extends Model
 
     public function followingUser()
     {
-        return $this->belongsTo('App\User', 'following_id');
+        return $this->belongsTo('App\User', 'following_id')->withTrashed();
     }
 }
