@@ -30,6 +30,8 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
         Route::get('/{user}/profile', 'UserController@profile')->name('profile');
         Route::get('/{user}/follower', 'UserController@follower')->name('follower');
         Route::get('/{user}/following', 'UserController@following')->name('following');
+        Route::get('/edit', 'UserController@edit')->name('edit');
+        Route::put('/update', 'UserController@update')->name('update');
     });
 
     // Category
@@ -48,6 +50,11 @@ Route::middleware('auth', 'throttle:60,1')->group(function () {
             Route::post('/{lesson}/answer', 'LessonController@answer')->name('answer');
         });
     });
+
+    // Word
+    Route::prefix('word')->name('word.')->group(function () {
+        Route::get('/learned/{user}', 'WordController@learned')->name('learned');
+    });
 });
 
 // Admin routes
@@ -60,6 +67,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin', 'throttle:60,1')->group(function () {
         Route::get('/home', 'Admin\HomeController@index')->name('home');
         Route::post('/logout', 'Admin\Auth\LoginController@logout')->name('logout');
+        Route::get('/list', 'Admin\AdminController@list')->name('list');
+        Route::get('/add', 'Admin\AdminController@add')->name('add');
+        Route::post('/register', 'Admin\Auth\RegisterController@register')->name('register');
+        Route::get('/{user}/edit', 'Admin\AdminController@edit')->name('edit');
+        Route::put('/{user}/update', 'Admin\AdminController@update')->name('update');
+        Route::delete('/{user}/delete', 'Admin\AdminController@delete')->name('delete');
 
         // Category
         Route::prefix('category')->name('category.')->group(function () {

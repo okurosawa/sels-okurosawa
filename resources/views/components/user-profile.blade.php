@@ -3,7 +3,7 @@
         @if (empty($user->avatar_path))
             <img class="card-img-top img-thumbnail" src="{{ asset('/images/user_icon_sample.png') }}">
         @else
-            <img class="card-img-top img-thumbnail" src="{{ asset($user->avatar_path) }}">
+            <img class="card-img-top img-thumbnail" src="{{ $user->avatar_path }}">
         @endif
     </div>
 
@@ -19,7 +19,7 @@
 
         <div class="d-flex justify-content-around">
             <div class="p-2">
-                <a class="d-inline-block btn btn-primary" href="#">
+                <a class="d-inline-block btn btn-primary" href="{{ route('word.learned', ['user' => $user->id]) }}">
                     <span class="font-weight-bold">{{ $user->answers->count() }}</span>
                     <p>words learned</p>
                 </a>

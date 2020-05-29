@@ -10,22 +10,34 @@
                         @if (empty($activity->user->avatar_path))
                             <img class="img-thumbnail" src="{{ asset('/images/user_icon_sample.png') }}">
                         @else
-                            <img class="img-thumbnail" src="{{ asset($activity->user->avatar_path) }}">
+                            <img class="img-thumbnail" src="{{ $activity->user->avatar_path }}">
                         @endif
                     </div>
                     <h3 class="col-lg-10 col-md-9 col-sm-10 col-10">
                         @if (isset($activity->activityMorph->follower_id))
-                            <a href="{{ route('user.profile', ['user' => $activity->activityMorph->follower_id]) }}">
+                            @if(isset($activity->user->deleted_at))
                                 {{ $activity->user->first_name }}
-                            </a>
+                            @else
+                                <a href="{{ route('user.profile', ['user' => $activity->activityMorph->follower_id]) }}">
+                                    {{ $activity->user->first_name }}
+                                </a>
+                            @endif
                             <span>followed</span>
-                            <a href="{{ route('user.profile', ['user' => $activity->activityMorph->followingUser->id]) }}">
+                            @if(isset($activity->activityMorph->followingUser->deleted_at))
                                 {{ $activity->activityMorph->followingUser->first_name }}
-                            </a>
+                            @else
+                                <a href="{{ route('user.profile', ['user' => $activity->activityMorph->followingUser->id]) }}">
+                                    {{ $activity->activityMorph->followingUser->first_name }}
+                                </a>
+                            @endif
                         @elseif(isset($activity->activityMorph->category_id))
-                            <a href="{{ route('user.profile', ['user' => $activity->activityMorph->user_id]) }}">
+                            @if(isset($activity->user->deleted_at))
                                 {{ $activity->user->first_name }}
-                            </a>
+                            @else
+                                <a href="{{ route('user.profile', ['user' => $activity->activityMorph->user_id]) }}">
+                                    {{ $activity->user->first_name }}
+                                </a>
+                            @endif
                             <span>
                                 learned
                                 {{ $activity->activityMorph->choices->where('correct_answer_flag', true)->count() }}

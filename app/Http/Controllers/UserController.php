@@ -6,7 +6,9 @@ use App\User;
 use App\Activity;
 use App\Relationship;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -66,5 +68,21 @@ class UserController extends Controller
     {
         $following = $user->following()->paginate(10);
         return view('user.following', compact('following', 'user'));
+    }
+
+    public function edit()
+    {
+        return view('user.edit', ['user' => Auth::user()]);
+    }
+
+    public function update(UserRequest $request)
+    {
+        if (Hash::check($request->current_password, Auth::user()->password)) {
+            Auth::user()->updateProfile($request);
+
+            return back()->with('succeeded', __("Succeeded to update your profile."));
+        }
+
+        return back()->with('error', __("Your current password is wrong."))->withInput();
     }
 }
